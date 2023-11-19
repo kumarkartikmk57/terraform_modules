@@ -14,5 +14,4 @@ terraform {
 provider "google" {
   project     = "cosmic-descent-405605"
   region      = "us-central1"
-  credentials = "${file("credentials.json")}"
 }
