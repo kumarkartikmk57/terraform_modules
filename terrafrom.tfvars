@@ -1,0 +1,7 @@
+project_id = "cosmic-descent-405605"
+projectid = "cosmic-descent-405605"
+bucket_name = "iac_bucket"
+location = "us-east1"
+instance_name = "iac_instance"
+machine_type = "e2-standard-2"
+image = "debian-10-buster-v20231115"

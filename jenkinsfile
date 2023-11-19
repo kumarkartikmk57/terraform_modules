@@ -1,0 +1,45 @@
+pipeline{
+    agent any
+    stages{
+        stage("init"){
+            steps{
+                echo "========git clone========"
+                sh 'git clone git@gitlab.com:kumarkartikmk57/terraform_project.git'
+            }
+            post{
+                always{
+                    echo "clone successfull"
+                }
+            }
+        }
+        stage("terraform_init"){
+            steps{
+                echo "========terraform init========"
+                sh 'terraform init'
+            }
+        }
+        stage("plan"){
+            steps{
+                echo "========terraform plan========"
+                sh 'terraform plan --var-file terraform.tfvars -o plan.txt'
+            }
+        }
+        stage("deploy"){
+            steps{
+                echo "========terraform init init========"
+                sh 'terraform apply --var-file terraform.tfvars --auto-approve'
+            }
+        }
+    }
+    post{
+        always{
+            echo "========complete========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
